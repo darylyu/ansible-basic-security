@@ -25,3 +25,5 @@
 - name: Firewall
   # TODO
 
+- name: Add public key from local machine to remote ~admin/.ssh/authorized_keys
+  authorized_key: user={{ remote_user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
