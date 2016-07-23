@@ -12,6 +12,7 @@
     - libssl-doc
     - unattended-upgrades
     - ufw
+    - fail2ban
   tags: packages
 
 
