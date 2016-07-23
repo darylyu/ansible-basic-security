@@ -1,5 +1,6 @@
 ---
 
+###############################################################################
 - name: Ensure bash, OpenSSL, and libssl are the latest versions
   apt: name={{ item }} update_cache=yes state=latest
   with_items:
@@ -9,21 +10,35 @@
     - libssl-doc
   tags: packages
 
+###############################################################################
 - name: Disable password logins via ssh
-  lineinfile: dest={{ sshd_config_path }} regexp="^#?PasswordAuthentication" line="PasswordAuthentication no"
+  lineinfile: dest={{ sshd_config_path }}
+              regexp="^#?PasswordAuthentication"
+              line="PasswordAuthentication no"
   notify: restart_ssh
 
+###############################################################################
 - name: Create regular user
-  user: name={{ remote_user }} groups=sudo shell=/bin/bash
+  user: name={{ remote_user }}
+        groups=sudo
+        shell=/bin/bash
 
+###############################################################################
 - name: Enable password-less sudo
-  lineinfile: dest=/etc/sudoers state=present regexp='^%sudo ALL\=' line='%sudo ALL=(ALL) NOPASSWD:ALL'
+  lineinfile: dest=/etc/sudoers
+              state=present
+              regexp='^%sudo ALL\='
+              line='%sudo ALL=(ALL) NOPASSWD:ALL'
 
-- name: Disable ssh for root user
-  # TODO
-
-- name: Firewall
-  # TODO
-
+###############################################################################
 - name: Add public key from local machine to remote ~admin/.ssh/authorized_keys
-  authorized_key: user={{ remote_user }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  authorized_key: user={{ remote_user }}
+                  key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+###############################################################################
+- name: Disable ssh for root user
+  lineinfile: dest=/etc/ssh/sshd_config
+              regexp="^PermitRootLogin"
+              line="PermitRootLogin no"
+              state=present
+  notify: restart_ssh
