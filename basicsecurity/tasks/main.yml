@@ -9,12 +9,14 @@
     - libssl-dev
     - libssl-doc
     - unattended-upgrades
+    - ufw
   tags: packages
 
 
 ###############################################################################
 - name: Automatically install security updates
   copy: src=templates/autoinstall_security_updates.txt dest=/etc/apt/apt.conf.d/10periodic
+
 
 ###############################################################################
 - name: Disable password logins via ssh
@@ -23,11 +25,13 @@
               line="PasswordAuthentication no"
   notify: restart_ssh
 
+
 ###############################################################################
 - name: Create regular user
   user: name={{ remote_user }}
         groups=sudo
         shell=/bin/bash
+
 
 ###############################################################################
 - name: Enable password-less sudo
@@ -36,10 +40,12 @@
               regexp='^%sudo ALL\='
               line='%sudo ALL=(ALL) NOPASSWD:ALL'
 
+
 ###############################################################################
 - name: Add public key from local machine to remote ~admin/.ssh/authorized_keys
   authorized_key: user={{ remote_user }}
                   key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
 
 ###############################################################################
 - name: Disable ssh for root user
@@ -48,3 +54,16 @@
               line="PermitRootLogin no"
               state=present
   notify: restart_ssh
+
+
+###############################################################################
+- name: firewall - close all ports
+  ufw: state=enabled
+       policy=deny
+
+
+###############################################################################
+- name: firewall - open ssh port
+  ufw: rule=allow
+       port=22
+       proto=tcp
