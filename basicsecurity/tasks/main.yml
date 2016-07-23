@@ -8,7 +8,13 @@
     - openssl
     - libssl-dev
     - libssl-doc
+    - unattended-upgrades
   tags: packages
+
+
+###############################################################################
+- name: Automatically install security updates
+  copy: src=templates/autoinstall_security_updates.txt dest=/etc/apt/apt.conf.d/10periodic
 
 ###############################################################################
 - name: Disable password logins via ssh
