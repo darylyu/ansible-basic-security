@@ -14,7 +14,7 @@
   notify: restart_ssh
 
 - name: Create regular user
-  user: name={{ remote_user }} groups=sudo
+  user: name={{ remote_user }} groups=sudo shell=/bin/bash
 
 - name: Enable password-less sudo
   lineinfile: dest=/etc/sudoers state=present regexp='^%sudo ALL\=' line='%sudo ALL=(ALL) NOPASSWD:ALL'
