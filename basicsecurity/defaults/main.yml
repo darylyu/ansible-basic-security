@@ -1,2 +1,3 @@
-remote_user
-
+---
+sshd_config_path: /etc/ssh/sshd_config
+remote_user: admin
