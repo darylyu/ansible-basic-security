@@ -1,7 +1,13 @@
 ---
 
-- name: Install packages
-  # TODO
+- name: Ensure bash, OpenSSL, and libssl are the latest versions
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - bash
+    - openssl
+    - libssl-dev
+    - libssl-doc
+  tags: packages
 
 - name: Disable password logins via ssh
   # TODO
