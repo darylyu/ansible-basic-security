@@ -1,21 +1,29 @@
-basicsecurity
-===========================
+ansbile-basic-security
+======================
 
-This Ansible Role sets up basic security on your Ubuntu server.
+This Ansible Role sets up basic security on your Ubuntu server. This repository does not claim to be industry-grade, but it is enough to protect you from most common drive-by brute force attacks and mass scans.
 
-Usage
------
+It does the following things:
 
-ansible-galaxy install basicsecurity
+* configures apt to auto-install security updates
+* closes all ports except ssh
+* disables password authentication for ssh(forcing you to use keys)
+* disables ssh-ing into the machine as root
+* creates a regular user so you can avoid using root
+* installs fail2ban(by default it blocks IPs that have 3 failed logins in 10 minutes)
 
-LICENSE: 3-clause BSD license.
+LICENSE
+-------
 
-CONTRIBUTING
-------------
+Copyright (c) 2016, D. Yu
+All rights reserved.
 
-git clone git@github.com:darylyu/ansible-basic-security
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 
----
-Copyright © 2016, D. Yu
+* Neither the name of ansible-basic-security nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
