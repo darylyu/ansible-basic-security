@@ -16,8 +16,8 @@
 - name: Create regular user
   user: name={{ remote_user }} groups=sudo
 
-- name: Auto-install security packages
-  # TODO
+- name: Enable password-less sudo
+  lineinfile: dest=/etc/sudoers state=present regexp='^%sudo ALL\=' line='%sudo ALL=(ALL) NOPASSWD:ALL'
 
 - name: Disable ssh for root user
   # TODO
