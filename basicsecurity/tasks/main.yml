@@ -1,0 +1,20 @@
+---
+
+- name: Install packages
+  # TODO
+
+- name: Disable password logins via ssh
+  # TODO
+
+- name: Add user as sudo
+  # TODO
+
+- name: Auto-install security packages
+  # TODO
+
+- name: Disable ssh for root user
+  # TODO
+
+- name: Firewall
+  # TODO
+
