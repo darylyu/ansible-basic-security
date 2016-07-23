@@ -2,7 +2,9 @@
 
 ###############################################################################
 - name: Ensure bash, OpenSSL, and libssl are the latest versions
-  apt: name={{ item }} update_cache=yes state=latest
+  apt: name={{ item }}
+       update_cache=yes
+       state=latest
   with_items:
     - bash
     - openssl
@@ -15,7 +17,8 @@
 
 ###############################################################################
 - name: Automatically install security updates
-  copy: src=templates/autoinstall_security_updates.txt dest=/etc/apt/apt.conf.d/10periodic
+  copy: src=templates/autoinstall_security_updates.txt
+        dest=/etc/apt/apt.conf.d/10periodic
 
 
 ###############################################################################
