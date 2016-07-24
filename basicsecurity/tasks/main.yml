@@ -71,3 +71,10 @@
   ufw: rule=allow
        port=22
        proto=tcp
+
+
+###############################################################################
+- name: firewall - open http port
+  ufw: rule=allow
+       port=80
+       proto=tcp
