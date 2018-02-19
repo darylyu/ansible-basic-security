@@ -15,7 +15,7 @@ It does the following things:
 LICENSE
 -------
 
-Copyright (c) 2016, D. Yu
+Copyright (c) 2016-2018, D. Yu
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
