@@ -15,5 +15,5 @@ pycparser==2.18
 pycrypto==2.6.1
 PyNaCl==1.2.1
 python-keyczar==0.716
-PyYAML==3.12
+PyYAML==5.1
 six==1.11.0
